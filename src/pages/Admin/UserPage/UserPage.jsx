@@ -8,6 +8,7 @@ import editIcon from "../../../assets/icons/edit-24px.svg";
 import chevronRight from "../../../assets/icons/chevron_right-24px.svg";
 import Sidebar from "../../../components/component/Sidebar/Sidebar";
 import DeleteModal from "../../../components/component/DeleteModal/DeleteModal";
+import AddButton from "../../../components/component/AddButton/AddButton";
 
 const UserPage = () => {
   let baseURL = "http://localhost:8081/users";
@@ -68,7 +69,6 @@ const UserPage = () => {
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(userList.length / itemsPerPage);
-  console.log(currentItems);
 
   // Function to handle page change
   const handlePageChange = (pageNumber) => {
@@ -80,6 +80,9 @@ const UserPage = () => {
       <div className={`content ${modalShow ? `content--show` : ``}`}>
         <Sidebar />
         <div className="tables">
+          <Link to={`/user/add`}>
+            <AddButton />
+          </Link>
           <table className="table">
             {/* Table headers */}
             <thead>

@@ -148,3 +148,20 @@
     color: $white;
   }
 }
+
+@mixin form-field {
+  height: 36px;
+  border: 1px solid $secondary-cloud;
+  border-radius: 20px;
+  padding: 0.5rem;
+  &::placeholder {
+    color: $secondary-slate;
+  }
+  &:focus {
+    border-color: $primary-indigo;
+    outline: none;
+  }
+  @include desktop {
+    margin-right: 1.25rem;
+  }
+}

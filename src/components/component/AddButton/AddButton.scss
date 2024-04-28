@@ -1,0 +1,16 @@
+@use "../../../styles/partials/mixins" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/typography" as *;
+.add-button {
+  @include button;
+  color: $primary-white;
+  border-style: none;
+  background-color: $primary-indigo;
+  margin-left: 5%;
+  margin-bottom: 2rem;
+  width: auto;
+  &:hover {
+    background-color: $background-graphite;
+    cursor: pointer;
+  }
+}

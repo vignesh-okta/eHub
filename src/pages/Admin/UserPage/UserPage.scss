@@ -14,7 +14,7 @@ $cell-background: #444;
   // padding-top: 3rem;
   // padding-bottom: 3rem;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 2rem;
   // border-radius: 20px;
   // box-shadow: 0 0 10px rgba(196, 196, 196, 0.1);
   overflow-x: auto;
@@ -29,7 +29,6 @@ $cell-background: #444;
   width: 90%;
   margin: auto;
   overflow: auto;
-
 
   // Style the header row
   &__header {
@@ -87,25 +86,23 @@ $cell-background: #444;
   &__Active {
     background-color: #2cb031a8;
     border-radius: 1rem;
-    padding: .3rem;
+    padding: 0.3rem;
     text-align: center;
   }
-  
+
   &__Suspended {
     background-color: #ccab14ba;
     border-radius: 1rem;
-    padding: .3rem;
+    padding: 0.3rem;
     text-align: center;
   }
-  
+
   &__Deactivated {
     background-color: #747b7a;
     border-radius: 1rem;
-    padding: .3rem;
+    padding: 0.3rem;
     text-align: center;
   }
-
-
 
   // Style table rows
   //   tbody {
@@ -131,12 +128,12 @@ $cell-background: #444;
   //   }
 }
 
-th:first-child{
-  border-radius:10px 0 0 10px;
+th:first-child {
+  border-radius: 10px 0 0 10px;
 }
 
-th:last-child{
-  border-radius:0 10px 10px 0;
+th:last-child {
+  border-radius: 0 10px 10px 0;
 }
 
 .tablePage {
@@ -149,12 +146,6 @@ th:last-child{
   border-radius: 10px;
 }
 
-.pageNumber {
-  // float: right;
-  // margin-right: 5%;
-  // margin-top: 2%;
-}
-
 .pgbtn {
   padding: revert-layer;
   background-color: unset;
@@ -162,28 +153,32 @@ th:last-child{
   font-size: medium;
 
   &:active {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
   }
 
-  &:hover{
+  &:hover {
     background-color: #96dda8;
-    transition: background-color .3s;
+    transition: background-color 0.3s;
   }
 
-  &:focus{
-    background-color:red;
+  &:focus {
+    background-color: red;
   }
 }
 
-
-
-.content{
+.content {
   display: flex;
-  background: linear-gradient(to bottom right,#101b35, #293960,#2d3e66, #101b35);
+  background: linear-gradient(
+    to bottom right,
+    #101b35,
+    #293960,
+    #2d3e66,
+    #101b35
+  );
   min-height: 85vh;
 
-  &--show{
-    filter:blur(2px);
+  &--show {
+    filter: blur(2px);
   }
 }
