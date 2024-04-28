@@ -8,6 +8,7 @@ import AdminPage from "./pages/Admin/AdminPage/AdminPage";
 import ImportPage from "./pages/Admin/ImportPage/ImportPage";
 import UserPage from "./pages/Admin/UserPage/UserPage";
 import UserDetailsPage from "./pages/Admin/UserDetailsPage/UserDetailsPage";
+import AddUserPage from "./pages/Admin/AddUserPage/AddUserPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<UserPage />} />
           <Route path="/import" element={<ImportPage />} />
           <Route path="/user/:id" element={<UserDetailsPage />} />
+          <Route path="/user/add" element={<AddUserPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

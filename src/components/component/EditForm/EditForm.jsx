@@ -5,16 +5,21 @@ import editIcon from "../../../assets/icons/edit-24px.svg";
 import $ from "jquery";
 
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./EditForm.scss";
 
-function EditForm() {
+function EditForm({ isEdit }) {
   const { id } = useParams();
   const apiURL = "http://localhost:8081/users/";
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState(null);
-  const [editClicked, setEditClicked] = useState(null);
+  const location = useLocation();
+
+  const [formData, setFormData] = useState(
+    Object.keys(location.state).length > 1 ? location.state.formData : null
+  );
+  const [editClicked, setEditClicked] = useState(isEdit);
+
+  console.log(formData);
 
   const handleEditClick = (e) => {
     e.preventDefault();
@@ -63,8 +68,11 @@ function EditForm() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${apiURL}${id}`);
-        setFormData(response.data);
+        if (Object.keys(location.state).length === 1) {
+          const response = await axios.get(`${apiURL}${id}`);
+
+          setFormData(response.data);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -84,16 +92,18 @@ function EditForm() {
           handleSave(e);
         }}
       >
-        <button className={`form__image ${
+        {Object.keys(location.state).length === 1 && (
+          <button className={`form__image ${
                     editClicked ? `form__image__hide` : ``
                   }`} onClick={handleEditClick}>
-          <p className="form__title"> EDIT USER</p>
-          <img
-            className="table__icon"
-            src={editIcon}
-            alt="Edit icon linking to edit user"
-          />
-        </button>
+            <p className="form__title"> EDIT USER</p>
+            <img
+              className="table__icon"
+              src={editIcon}
+              alt="Edit icon linking to edit user"
+            />
+          </button>
+        )}
         <div className="form__fields">
           <div className="form__column">
             <div className="field-wrap">
