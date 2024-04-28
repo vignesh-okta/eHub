@@ -12,19 +12,20 @@ function UserDetailsPage() {
 
   return (
     <div className="content">
-      <Sidebar />
-      <div className="user-edit">
-        <div className="user-edit__header">
-          <Link className="user-edit__link" to={`/`}>
-            <img
-              className="user-edit__icon"
-              src={arrowBack}
-              alt="Return previous page"
-            />
-          </Link>
+
+    <Sidebar />
+    <div className="user-edit">
+      <div className="user-edit__header">
+        <Link className="user-edit__link" to={`/`}>
+          <img
+            className="user-edit__icon"
+            src={arrowBack}
+            alt="Return previous page"
+          />
           <h3 className="user-edit__title">Back to Users</h3>
-        </div>
-        <EditForm isEdit={isEdit} />
+        </Link>
+  <EditForm isEdit={isEdit} />
+       
       </div>
     </div>
   );

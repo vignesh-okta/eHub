@@ -29,9 +29,11 @@ function EditForm({ isEdit }) {
   };
 
   const handleChange = (e) => {
+    
     // setFormData({ ...formData, firstName: e.target.value });
 
     const { name, value } = e.target;
+    // console.log(name, value);
 
     setFormData((prevData) => ({
       ...prevData,
@@ -91,7 +93,9 @@ function EditForm({ isEdit }) {
         }}
       >
         {Object.keys(location.state).length === 1 && (
-          <button className="form__image" onClick={handleEditClick}>
+          <button className={`form__image ${
+                    editClicked ? `form__image__hide` : ``
+                  }`} onClick={handleEditClick}>
             <p className="form__title"> EDIT USER</p>
             <img
               className="table__icon"
@@ -101,14 +105,14 @@ function EditForm({ isEdit }) {
           </button>
         )}
         <div className="form__fields">
-          <div>
+          <div className="form__column">
             <div className="field-wrap">
               <label className="form__label ">
                 First Name
                 <input
                   type="text"
                   className={`form__input ${
-                    editClicked ? `form__input--highlight` : ``
+                    editClicked ? `form__input__edit` : ``
                   }`}
                   id="userName"
                   name="firstName"
@@ -123,7 +127,9 @@ function EditForm({ isEdit }) {
                 Phone
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="phone"
                   name="phone"
                   value={`${formData.phone}`}
@@ -137,7 +143,9 @@ function EditForm({ isEdit }) {
                 Department
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="department"
                   name="department"
                   value={`${formData.department}`}
@@ -151,7 +159,9 @@ function EditForm({ isEdit }) {
                 City
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="city"
                   name="city"
                   value={`${formData.city}`}
@@ -165,7 +175,9 @@ function EditForm({ isEdit }) {
                 State
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="state"
                   name="state"
                   value={`${formData.state}`}
@@ -177,24 +189,33 @@ function EditForm({ isEdit }) {
             <div className="field-wrap">
               <label className="form__label">
                 Role
-                <input
+                <select
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="role"
                   name="role"
                   value={`${formData.role}`}
                   readOnly={!editClicked}
-                />
+                  onChange={handleChange}
+                >
+                <option value="user">User</option>
+                <option value="read_only_admin">Read Only Admin</option>
+                <option value="super_admin">Super Admin</option>
+                </select>
               </label>
             </div>
           </div>
-          <div>
+          <div className="form__column">
             <div className="field-wrap">
               <label className="form__label">
                 Last Name
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="lastName"
                   name="lastName"
                   value={`${formData.lastName}`}
@@ -208,7 +229,9 @@ function EditForm({ isEdit }) {
                 Email
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="email"
                   name="email"
                   value={`${formData.email}`}
@@ -222,7 +245,9 @@ function EditForm({ isEdit }) {
                 Job Title
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="jobTitle"
                   name="jobTitle"
                   value={`${formData.jobTitle}`}
@@ -236,7 +261,9 @@ function EditForm({ isEdit }) {
                 Country
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="country"
                   name="country"
                   value={`${formData.country}`}
@@ -250,7 +277,9 @@ function EditForm({ isEdit }) {
                 Source
                 <input
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="source"
                   name="source"
                   value={`${formData.source}`}
@@ -261,14 +290,21 @@ function EditForm({ isEdit }) {
             <div className="field-wrap">
               <label className="form__label">
                 Status
-                <input
+                <select
                   type="text"
-                  className="form__input"
+                  className={`form__input ${
+                    editClicked ? `form__input__edit` : ``
+                  }`}
                   id="status"
                   name="status"
                   value={`${formData.status}`}
                   readOnly={!editClicked}
-                />
+                  onChange={handleChange}
+                > 
+                <option value="Active">Active</option>
+                <option value="Suspended">Suspended</option>
+                <option value="Deactivated">Deactivated</option>
+                </select>
               </label>
             </div>
           </div>
