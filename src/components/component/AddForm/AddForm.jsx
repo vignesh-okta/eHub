@@ -6,11 +6,7 @@ import arrowBack from "../../../assets/icons/arrow_back-24px.svg";
 import CancelButton from "../../../components/component/CancelButton/CancelButton";
 import AddButton from "../../../components/component/AddButton/AddButton";
 
-const apiURL = "http://localhost:8080/users/";
-const validateEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+const apiURL = "http://localhost:8081/users/";
 
 function AdduserPage() {
   const navigate = useNavigate();
@@ -33,14 +29,15 @@ function AdduserPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Submitted");
-    console.log(formData);
-
-    // try {
-    //   await axios.post(apiURL, formData);
-    //   navigate(`/`);
-    // } catch (error) {
-    //   console.error("Error submitting form:", error);
-    // }
+    try {
+      const response = await axios.post(apiURL, formData);
+      console.log(response.data.id);
+      navigate(`/user/:${response.data.id}`, {
+        state: { isEdit: false, formData: response.data },
+      });
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   };
 
   return (

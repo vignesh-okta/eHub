@@ -5,16 +5,21 @@ import editIcon from "../../../assets/icons/edit-24px.svg";
 import $ from "jquery";
 
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./EditForm.scss";
 
 function EditForm({ isEdit }) {
   const { id } = useParams();
   const apiURL = "http://localhost:8081/users/";
+  const location = useLocation();
 
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState(
+    Object.keys(location.state).length > 1 ? location.state.formData : null
+  );
   const [editClicked, setEditClicked] = useState(isEdit);
+
+  console.log(formData);
 
   const handleEditClick = (e) => {
     e.preventDefault();
@@ -61,8 +66,11 @@ function EditForm({ isEdit }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${apiURL}${id}`);
-        setFormData(response.data);
+        if (Object.keys(location.state).length === 1) {
+          const response = await axios.get(`${apiURL}${id}`);
+
+          setFormData(response.data);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -82,14 +90,16 @@ function EditForm({ isEdit }) {
           handleSave(e);
         }}
       >
-        <button className="form__image" onClick={handleEditClick}>
-          <p className="form__title"> EDIT USER</p>
-          <img
-            className="table__icon"
-            src={editIcon}
-            alt="Edit icon linking to edit user"
-          />
-        </button>
+        {Object.keys(location.state).length === 1 && (
+          <button className="form__image" onClick={handleEditClick}>
+            <p className="form__title"> EDIT USER</p>
+            <img
+              className="table__icon"
+              src={editIcon}
+              alt="Edit icon linking to edit user"
+            />
+          </button>
+        )}
         <div className="form__fields">
           <div>
             <div className="field-wrap">
