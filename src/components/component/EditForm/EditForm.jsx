@@ -9,12 +9,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./EditForm.scss";
 
-function EditForm() {
+function EditForm({ isEdit }) {
   const { id } = useParams();
   const apiURL = "http://localhost:8081/users/";
-  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(null);
-  const [editClicked, setEditClicked] = useState(null);
+  const [editClicked, setEditClicked] = useState(isEdit);
 
   const handleEditClick = (e) => {
     e.preventDefault();
