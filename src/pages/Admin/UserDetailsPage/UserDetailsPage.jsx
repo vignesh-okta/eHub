@@ -18,8 +18,9 @@ function UserDetailsPage() {
             src={arrowBack}
             alt="Return previous page"
           />
+          <h3 className="user-edit__title">Back to Users</h3>
         </Link>
-        <h3 className="user-edit__title">Back to Users</h3>
+        
       </div>
       <EditForm />
     </div>
