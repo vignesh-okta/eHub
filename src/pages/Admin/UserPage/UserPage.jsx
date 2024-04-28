@@ -9,12 +9,14 @@ import chevronRight from "../../../assets/icons/chevron_right-24px.svg";
 import Sidebar from "../../../components/component/Sidebar/Sidebar";
 import DeleteModal from "../../../components/component/DeleteModal/DeleteModal";
 import AddButton from "../../../components/component/AddButton/AddButton";
+import SearchHeader from "../../../components/component/SearchHeader/SearchHeader";
 
 const UserPage = () => {
   let baseURL = "http://localhost:8081/users";
   const [userList, setuserList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [message, setMessage] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [id, setId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -34,7 +36,6 @@ const UserPage = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log(id);
     try {
       await axios.delete(`${baseURL}/${id}`);
       const response = await axios.get(`${baseURL}`);
@@ -45,9 +46,16 @@ const UserPage = () => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   useEffect(() => {
     try {
       const getUserList = async () => {
+        if (searchQuery) {
+          baseURL += `?search=${searchQuery}`;
+        }
         const response = await axios.get(baseURL);
         // setUserLengths(response.data.length);
         setuserList(response.data);
@@ -56,7 +64,7 @@ const UserPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [userList.length]);
+  }, [userList.length, searchQuery]);
 
   if (!userList || userList.length === 0) {
     return <></>;
@@ -80,6 +88,12 @@ const UserPage = () => {
       <div className={`content ${modalShow ? `content--show` : ``}`}>
         <Sidebar />
         <div className="tables">
+          <SearchHeader
+            placeholder="Search ..."
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchChange}
+          />
+
           <Link to={`/user/add`}>
             <AddButton />
           </Link>
