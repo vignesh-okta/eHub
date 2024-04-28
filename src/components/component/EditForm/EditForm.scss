@@ -1,0 +1,36 @@
+@use "../../../styles/partials/mixins" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+.user-edit {
+  &__button-wrapper {
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+      margin-top: 1rem;
+      //   justify-content: flex-end;
+    }
+  }
+
+  &__button {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.form {
+  &__title {
+    color: black;
+  }
+  &__image {
+    padding: 0.5rem;
+  }
+  &__input {
+    &--highlight {
+      border: 2px solid aqua;
+    }
+  }
+}

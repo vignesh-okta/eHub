@@ -1,0 +1,30 @@
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import "./UserDetailsPage.scss";
+import arrowBack from "../../../assets/icons/arrow_back-24px.svg";
+import EditForm from "../../../components/component/EditForm/EditForm";
+import Sidebar from "../../../components/component/Sidebar/Sidebar";
+
+function UserDetailsPage() {
+  return (
+    <div className="content">
+    <Sidebar />
+    <div className="user-edit">
+      <div className="user-edit__header">
+        <Link className="user-edit__link" to={`/`}>
+          <img
+            className="user-edit__icon"
+            src={arrowBack}
+            alt="Return previous page"
+          />
+        </Link>
+        <h3 className="user-edit__title">Back to Users</h3>
+      </div>
+      <EditForm />
+    </div>
+    </div>
+  );
+}
+
+export default UserDetailsPage;

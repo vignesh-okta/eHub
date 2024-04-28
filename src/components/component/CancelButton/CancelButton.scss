@@ -1,0 +1,21 @@
+@use "../../../styles/partials/mixins" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+
+.cancel-link {
+  text-decoration: none;
+  width: 100%;
+  margin-right: 0.5rem;
+}
+.cancel-button {
+  @include button;
+  width: 100%;
+  color: $secondary-slate;
+  border: 1px solid $secondary-cloud;
+  background-color: $primary-white;
+
+  &:hover {
+    border: 1px solid $primary-indigo;
+    color: $primary-indigo;
+  }
+}

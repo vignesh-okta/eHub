@@ -1,0 +1,22 @@
+import "./Sidebar.scss"
+import { NavLink } from "react-router-dom";
+
+function Sidebar() {
+  return (
+    <div className="sidebar-main">
+         <div className="test-container">
+          <NavLink to="/" className="header__users-button">
+            Users
+          </NavLink>
+          <NavLink to="/roles" className="header__users-button">
+            Roles
+          </NavLink>
+          <NavLink to="/import" className="header__users-button">
+            Import
+          </NavLink>
+        </div>
+    </div>
+  )
+}
+
+export default Sidebar
