@@ -9,12 +9,14 @@ import chevronRight from "../../../assets/icons/chevron_right-24px.svg";
 import Sidebar from "../../../components/component/Sidebar/Sidebar";
 import DeleteModal from "../../../components/component/DeleteModal/DeleteModal";
 import AddButton from "../../../components/component/AddButton/AddButton";
+import SearchHeader from "../../../components/component/SearchHeader/SearchHeader";
 
-const UserPage = () => {
+const UserPage = ({ role, queryparam }) => {
   let baseURL = "http://localhost:8081/users";
   const [userList, setuserList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [message, setMessage] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [id, setId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -34,7 +36,6 @@ const UserPage = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log(id);
     try {
       await axios.delete(`${baseURL}/${id}`);
       const response = await axios.get(`${baseURL}`);
@@ -45,18 +46,36 @@ const UserPage = () => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   useEffect(() => {
     try {
-      const getUserList = async () => {
-        const response = await axios.get(baseURL);
-        // setUserLengths(response.data.length);
-        setuserList(response.data);
-      };
-      getUserList();
+      if (!role) {
+        const getUserList = async () => {
+          if (searchQuery) {
+            baseURL += `?search=${searchQuery}`;
+          }
+          const response = await axios.get(baseURL);
+          // setUserLengths(response.data.length);
+          setuserList(response.data);
+        };
+        getUserList();
+      } else {
+        console.log(queryparam);
+        const getRolesList = async () => {
+          baseURL = `http://localhost:8081/users/roledetails?role=${queryparam}`;
+          const response = await axios.get(baseURL);
+          console.log(response.data);
+          setuserList(response.data);
+        };
+        getRolesList();
+      }
     } catch (error) {
       console.log(error);
     }
-  }, [userList.length]);
+  }, [userList.length, searchQuery]);
 
   if (!userList || userList.length === 0) {
     return <></>;
@@ -78,12 +97,22 @@ const UserPage = () => {
   return (
     <>
       <div className={`content ${modalShow ? `content--show` : ``}`}>
-        <Sidebar />
+        {!role && <Sidebar />}
         <div className="tables">
-          <Link to={`/user/add`}>/
-            <button className="add-button">Add User</button>
-            {/* <AddButton /> */}
-          </Link>
+          {!role && (
+            <>
+              <SearchHeader
+                placeholder="Search ..."
+                searchQuery={searchQuery}
+                onSearchChange={handleSearchChange}
+              />
+              <Link to={`/user/add`}>/
+                <button className="add-button">Add User</button>
+                {/* <AddButton /> */}
+              </Link>
+            </>
+          )}
+          {role && <Link to={`/roles`}>Go Back</Link>}
           <table className="table">
             {/* Table headers */}
             <thead>
@@ -112,7 +141,7 @@ const UserPage = () => {
                         <img
                           className="table__chevron"
                           src={chevronRight}
-                          alt="Chervon right arrow icon that links to user info page"
+                          alt="Chervon-right"
                         />
                       </div>
                     </Link>
