@@ -9,6 +9,8 @@ import ImportPage from "./pages/Admin/ImportPage/ImportPage";
 import UserPage from "./pages/Admin/UserPage/UserPage";
 import UserDetailsPage from "./pages/Admin/UserDetailsPage/UserDetailsPage";
 import AddUserPage from "./pages/Admin/AddUserPage/AddUserPage";
+import RolesPage from "./pages/Admin/RolesPage/RolesPage";
+import RoleDetails from "./pages/Admin/RoleDetails/RoleDetails";
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
           <Route path="/import" element={<ImportPage />} />
           <Route path="/user/:id" element={<UserDetailsPage />} />
           <Route path="/user/add" element={<AddUserPage />} />
+
+          <Route path="/roles" element={<RolesPage />} />
+          <Route path="/roledetails" element={<RoleDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>
