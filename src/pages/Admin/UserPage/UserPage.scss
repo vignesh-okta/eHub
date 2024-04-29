@@ -182,3 +182,17 @@ th:last-child {
     filter: blur(2px);
   }
 }
+
+.add-button {
+  @include button;
+  color: $primary-white;
+  border-style: none;
+  background-color: $blue-text;
+  margin-left: 5%;
+  margin-bottom: 2rem;
+  width: auto;
+  &:hover {
+    background-color: $background-graphite;
+    cursor: pointer;
+  }
+}

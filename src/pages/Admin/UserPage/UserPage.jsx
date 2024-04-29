@@ -80,8 +80,9 @@ const UserPage = () => {
       <div className={`content ${modalShow ? `content--show` : ``}`}>
         <Sidebar />
         <div className="tables">
-          <Link to={`/user/add`}>
-            <AddButton />
+          <Link to={`/user/add`}>/
+            <button className="add-button">Add User</button>
+            {/* <AddButton /> */}
           </Link>
           <table className="table">
             {/* Table headers */}

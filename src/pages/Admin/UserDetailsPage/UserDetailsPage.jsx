@@ -24,6 +24,7 @@ function UserDetailsPage() {
           />
           <h3 className="user-edit__title">Back to Users</h3>
         </Link>
+        </div>
   <EditForm isEdit={isEdit} />
        
       </div>

@@ -13,7 +13,6 @@ function EditForm({ isEdit }) {
   const { id } = useParams();
   const apiURL = "http://localhost:8081/users/";
   const location = useLocation();
-
   const [formData, setFormData] = useState(
     Object.keys(location.state).length > 1 ? location.state.formData : null
   );
@@ -92,7 +91,7 @@ function EditForm({ isEdit }) {
           handleSave(e);
         }}
       >
-        {Object.keys(location.state).length === 1 && (
+        {/* {Object.keys(location.state).length === 1 && ( */}
           <button className={`form__image ${
                     editClicked ? `form__image__hide` : ``
                   }`} onClick={handleEditClick}>
@@ -103,7 +102,7 @@ function EditForm({ isEdit }) {
               alt="Edit icon linking to edit user"
             />
           </button>
-        )}
+        {/* )} */}
         <div className="form__fields">
           <div className="form__column">
             <div className="field-wrap">
@@ -228,7 +227,7 @@ function EditForm({ isEdit }) {
               <label className="form__label">
                 Email
                 <input
-                  type="text"
+                  type="email"
                   className={`form__input ${
                     editClicked ? `form__input__edit` : ``
                   }`}

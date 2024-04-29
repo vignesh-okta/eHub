@@ -9,10 +9,18 @@
 }
 .cancel-button {
   @include button;
+  outline: none;
+  border-radius: 5px;
+  padding: 12px 30px;
+  font-size: medium;
+  text-transform: uppercase;
+  background: rgba(79, 109, 155, 0.768627451);
+  color: #ffffff;
+  width: 30%;
   width: 100%;
-  color: $secondary-slate;
-  border: 1px solid $secondary-cloud;
-  background-color: $primary-white;
+  color: #5c667e;
+  border: 1px solid #bdc5d5;
+  background-color: #ffffff;
   margin-right: 40px;
 
 
