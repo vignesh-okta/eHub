@@ -199,7 +199,7 @@ function AdduserPage() {
           <div className="user-add__button-wrapper">
             <div className="user-add__button">
               <CancelButton to="/" />
-              <AddButton onSubmit={handleSubmit} />
+              <AddButton />
             </div>
           </div>
         </form>

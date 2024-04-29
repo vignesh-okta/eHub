@@ -6,10 +6,7 @@ function AddButton() {
   };
   return (
     <div>
-      {" "}
-      <button className="add-button" onClick={handleAdd}>
-        Add User
-      </button>
+      <button className="add-button">Add User</button>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./UserPage.scss";
 import deleteIcon from "../../../assets/icons/delete_outline-24px.svg";
+import sortIcon from "../../../assets/icons/sort-24px.svg";
 import editIcon from "../../../assets/icons/edit-24px.svg";
 import chevronRight from "../../../assets/icons/chevron_right-24px.svg";
 import Sidebar from "../../../components/component/Sidebar/Sidebar";
@@ -17,6 +18,9 @@ const UserPage = ({ role, queryparam }) => {
   const [modalShow, setModalShow] = useState(false);
   const [message, setMessage] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortQuery, setSortQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
+
   const [id, setId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -50,6 +54,15 @@ const UserPage = ({ role, queryparam }) => {
     setSearchQuery(event.target.value);
   };
 
+  // ---------Sorting---------
+  const handleSort = async (e, queryValue, sortOrder) => {
+    setSortQuery(queryValue);
+    baseURL = `http://localhost:8081/users?sort=${queryValue}&sortOrder=${sortOrder}`;
+    const response = await axios.get(baseURL);
+    setuserList(response.data);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+
   useEffect(() => {
     try {
       if (!role) {
@@ -57,8 +70,12 @@ const UserPage = ({ role, queryparam }) => {
           if (searchQuery) {
             baseURL += `?search=${searchQuery}`;
           }
+          // if (searchQuery && sortQuery) {
+          // baseURL += `?search=${searchQuery}&sort=${sortQuery}&sortOrder=${sortOrder}`;
+          // }
           const response = await axios.get(baseURL);
           // setUserLengths(response.data.length);
+          console.log(response.data);
           setuserList(response.data);
         };
         getUserList();
@@ -78,7 +95,20 @@ const UserPage = ({ role, queryparam }) => {
   }, [userList.length, searchQuery]);
 
   if (!userList || userList.length === 0) {
-    return <></>;
+    return (
+      <>
+        <div className="content">
+          <Sidebar />
+          <div className="tables">
+            <SearchHeader
+              placeholder="Search ..."
+              searchQuery={searchQuery}
+              onSearchChange={handleSearchChange}
+            />
+          </div>
+        </div>
+      </>
+    );
   }
 
   // Calculate the index of the first and last item to display on the current page
@@ -118,10 +148,42 @@ const UserPage = ({ role, queryparam }) => {
             {/* Table headers */}
             <thead>
               <tr>
-                <th className="table__header">Display Name</th>
-                <th className="table__header">Email</th>
-                <th className="table__header">Status</th>
-                <th className="table__header">Role</th>
+                <th className="table__header">
+                  Display Name
+                  <img
+                    className="tableHeader__icon"
+                    src={sortIcon}
+                    alt="Sorting arrows icon/button"
+                    onClick={(e) => handleSort(e, `firstName`, sortOrder)}
+                  />
+                </th>
+                <th className="table__header">
+                  Email
+                  <img
+                    className="tableHeader__icon"
+                    src={sortIcon}
+                    alt="Sorting arrows icon/button"
+                    onClick={(e) => handleSort(e, `email`, sortOrder)}
+                  />
+                </th>
+                <th className="table__header">
+                  Status
+                  <img
+                    className="tableHeader__icon"
+                    src={sortIcon}
+                    alt="Sorting arrows icon/button"
+                    onClick={(e) => handleSort(e, `status`, sortOrder)}
+                  />
+                </th>
+                <th className="table__header">
+                  Role
+                  <img
+                    className="tableHeader__icon"
+                    src={sortIcon}
+                    alt="Sorting arrows icon/button"
+                    onClick={(e) => handleSort(e, `role`, sortOrder)}
+                  />
+                </th>
                 <th className="table__header">Actions</th>
 
                 {/* Add more headers as needed */}

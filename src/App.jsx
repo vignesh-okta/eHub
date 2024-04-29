@@ -11,6 +11,7 @@ import UserDetailsPage from "./pages/Admin/UserDetailsPage/UserDetailsPage";
 import AddUserPage from "./pages/Admin/AddUserPage/AddUserPage";
 import RolesPage from "./pages/Admin/RolesPage/RolesPage";
 import RoleDetails from "./pages/Admin/RoleDetails/RoleDetails";
+import LoginPage from "./pages/Login/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
 
           <Route path="/roles" element={<RolesPage />} />
           <Route path="/roledetails" element={<RoleDetails />} />
+
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
