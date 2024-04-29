@@ -106,14 +106,13 @@ const UserPage = ({ role, queryparam }) => {
                 searchQuery={searchQuery}
                 onSearchChange={handleSearchChange}
               />
-
-              <Link to={`/user/add`}>
-                <AddButton />
+              <Link to={`/user/add`}>/
+                <button className="add-button">Add User</button>
+                {/* <AddButton /> */}
               </Link>
             </>
           )}
           {role && <Link to={`/roles`}>Go Back</Link>}
-
           <table className="table">
             {/* Table headers */}
             <thead>

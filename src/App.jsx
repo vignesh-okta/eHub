@@ -11,6 +11,8 @@ import UserDetailsPage from "./pages/Admin/UserDetailsPage/UserDetailsPage";
 import AddUserPage from "./pages/Admin/AddUserPage/AddUserPage";
 import RolesPage from "./pages/Admin/RolesPage/RolesPage";
 import RoleDetails from "./pages/Admin/RoleDetails/RoleDetails";
+import Password from "./components/component/Password/Password";
+
 
 function App() {
   return (
@@ -23,9 +25,9 @@ function App() {
           <Route path="/import" element={<ImportPage />} />
           <Route path="/user/:id" element={<UserDetailsPage />} />
           <Route path="/user/add" element={<AddUserPage />} />
-
           <Route path="/roles" element={<RolesPage />} />
           <Route path="/roledetails" element={<RoleDetails />} />
+          <Route path="/login" element={<Password />} />
         </Routes>
         <Footer />
       </BrowserRouter>

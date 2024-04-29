@@ -1,16 +1,16 @@
 import "./AddButton.scss";
+import { Link } from "react-router-dom";
 
-function AddButton() {
+function AddButton({handleSubmit}) {
   const handleAdd = () => {
     console.log("Add");
   };
   return (
-    <div>
-      {" "}
-      <button className="add-button" onClick={handleAdd}>
+      <div className="addbutton">
+        <button className="save-button">
         Add User
       </button>
-    </div>
+      </div>
   );
 }
 
