@@ -59,6 +59,10 @@
     background: $import-main;
     color: $white;
   }
+  &-content{
+    padding: 0 40px 10px;
+    margin: auto;
+  }
 }
 
 label.active {
@@ -116,9 +120,5 @@ textarea {
 .forgot {
   margin-top: -20px;
   text-align: right;
-}
-
-.tab-content {
-  padding: 0 40px 10px;
 }
 

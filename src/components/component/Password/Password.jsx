@@ -1,7 +1,6 @@
 import { useRef } from 'react'
-import bcrypt from 'bcryptjs'
 
-const salt = '$2a$04$ygkjdNne8U.TwnaEtJupnu'//bcrypt.genSaltSync(4)
+//bcrypt.genSaltSync(4)
 
 // const handleSubmit = async (event) => {
 //     event.preventDefault();
@@ -24,7 +23,7 @@ function Password() {
     function handleLoginForm() {
       const email = emailInputRef.current.value
       const password = passwordInputRef.current.value
-      const hashedPassword = bcrypt.hashSync(password, salt) // hash created previously created upon sign up
+// hash created previously created upon sign up
   
       fetch('http://localhost:8081/login', {
         method: 'POST',
@@ -55,7 +54,7 @@ function Password() {
               Log In
             </button>
           </form>
-          <span>Your new SALT: {salt}</span>
+
           <br />
           <span>
             Save this Salt, UPON sign up <br /> if you refresh it will generate a new SALT!!!

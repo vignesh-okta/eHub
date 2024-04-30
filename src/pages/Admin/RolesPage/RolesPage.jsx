@@ -24,7 +24,9 @@ function RolesPage() {
   }
 
   return (
-    <div>
+    <div className={`content`}>
+    <Sidebar />
+    <div className="tables">
       <table className="table">
         {/* Table headers */}
         <thead>
@@ -42,7 +44,7 @@ function RolesPage() {
                     to={`/roledetails?role=${role}`}
                     className="table__link"
                   > */}
-                  <Link
+                  <Link className="table__link"
                     to={{
                       pathname: "/roledetails",
                       search: `?role=${role}`,
@@ -64,6 +66,7 @@ function RolesPage() {
           })}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }
