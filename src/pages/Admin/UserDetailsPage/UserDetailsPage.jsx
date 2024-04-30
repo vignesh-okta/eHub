@@ -15,7 +15,7 @@ function UserDetailsPage() {
       <Sidebar />
       <div className="user-edit">
         <div className="user-edit__header">
-          <Link className="user-edit__link" to={`/`}>
+          <Link className="user-edit__link" to="/">
             <img
               className="user-edit__icon"
               src={arrowBack}

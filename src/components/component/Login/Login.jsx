@@ -1,8 +1,14 @@
 import axios from "axios";
+import AuthContext from "../../../Utility/AuthProvider";
 import "./Login.scss";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   let baseURL = "http://localhost:8081/login";
+  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const reqbody = {
@@ -10,12 +16,22 @@ function Login() {
       password: e.target.password.value,
     };
     try {
+      axios.defaults.withCredentials = true;
       const response = await axios.post(baseURL, reqbody);
+
       console.log(response.data);
+      //   const cookies = cookie.parse(response.headers["set-cookie"][0]);
+      //   console.log(cookies);
+      setRedirect(true);
     } catch (error) {
       console.log("Something went wrong");
     }
   };
+
+  if (redirect) {
+    navigate("/");
+  }
+
   return (
     <div className="card">
       <h1>Welcome Back!</h1>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./UserPage.scss";
 import deleteIcon from "../../../assets/icons/delete_outline-24px.svg";
@@ -14,6 +14,7 @@ import SearchHeader from "../../../components/component/SearchHeader/SearchHeade
 
 const UserPage = ({ role, queryparam }) => {
   let baseURL = "http://localhost:8081/users";
+  const navigate = useNavigate();
   const [userList, setuserList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [message, setMessage] = useState([]);
@@ -64,6 +65,8 @@ const UserPage = ({ role, queryparam }) => {
   };
 
   useEffect(() => {
+    // axios.defaults.withCredentials = true;
+    // console.log();
     try {
       if (!role) {
         const getUserList = async () => {
@@ -92,7 +95,7 @@ const UserPage = ({ role, queryparam }) => {
     } catch (error) {
       console.log(error);
     }
-  }, [userList.length, searchQuery]);
+  }, [searchQuery]);
 
   if (!userList || userList.length === 0) {
     return (
