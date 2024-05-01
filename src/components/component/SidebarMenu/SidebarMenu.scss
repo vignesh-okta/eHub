@@ -1,0 +1,21 @@
+.sidebar {
+  padding-top: 2rem;
+  height: 88vh;
+  background-color: black;
+
+  &__ul {
+    padding-top: 2rem;
+  }
+
+  &__text {
+    color: white;
+    font-size: 1.25rem;
+  }
+  &__icon {
+    color: white;
+  }
+
+  &--active {
+    background-color: rgb(155, 36, 36);
+  }
+}
