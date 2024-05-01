@@ -12,6 +12,8 @@ import AddUserPage from "./pages/Admin/AddUserPage/AddUserPage";
 import RolesPage from "./pages/Admin/RolesPage/RolesPage";
 import RoleDetails from "./pages/Admin/RoleDetails/RoleDetails";
 import LoginPage from "./pages/Login/LoginPage/LoginPage";
+import UserDashboard from "./pages/User/UserDashboard/UserDashboard";
+import Login from "./components/component/Login/Login";
 
 function App() {
   return (
@@ -29,8 +31,12 @@ function App() {
           <Route path="/roledetails" element={<RoleDetails />} />
 
           <Route path="/login" element={<LoginPage />} />
+
+          <Route path="/dashboard" element={<UserDashboard />} />
+
+          <Route path="*" element={<LoginPage />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </>
   );
