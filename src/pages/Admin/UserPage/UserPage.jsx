@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./UserPage.scss";
 import deleteIcon from "../../../assets/icons/delete_outline-24px.svg";
@@ -14,12 +14,14 @@ import SearchHeader from "../../../components/component/SearchHeader/SearchHeade
 
 const UserPage = ({ role, queryparam }) => {
   let baseURL = "http://localhost:8081/users";
+  const navigate = useNavigate();
   const [userList, setuserList] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [message, setMessage] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortQuery, setSortQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const token = localStorage.getItem("token");
 
   const [id, setId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +44,11 @@ const UserPage = ({ role, queryparam }) => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${baseURL}/${id}`);
-      const response = await axios.get(`${baseURL}`);
+      const response = await axios.get(`${baseURL}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setuserList(response.data);
       setModalShow(false);
     } catch (error) {
@@ -58,7 +64,11 @@ const UserPage = ({ role, queryparam }) => {
   const handleSort = async (e, queryValue, sortOrder) => {
     setSortQuery(queryValue);
     baseURL = `http://localhost:8081/users?sort=${queryValue}&sortOrder=${sortOrder}`;
-    const response = await axios.get(baseURL);
+    const response = await axios.get(baseURL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     setuserList(response.data);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
@@ -73,17 +83,31 @@ const UserPage = ({ role, queryparam }) => {
           // if (searchQuery && sortQuery) {
           // baseURL += `?search=${searchQuery}&sort=${sortQuery}&sortOrder=${sortOrder}`;
           // }
-          const response = await axios.get(baseURL);
-          // setUserLengths(response.data.length);
-          console.log(response.data);
-          setuserList(response.data);
+
+          try {
+            const response = await axios.get(baseURL, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            // setUserLengths(response.data.length);
+            console.log(response.data);
+            setuserList(response.data);
+          } catch (error) {
+            console.log("Unauthorized");
+            navigate("/login");
+          }
         };
         getUserList();
       } else {
         console.log(queryparam);
         const getRolesList = async () => {
           baseURL = `http://localhost:8081/users/roledetails?role=${queryparam}`;
-          const response = await axios.get(baseURL);
+          const response = await axios.get(baseURL, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           console.log(response.data);
           setuserList(response.data);
         };

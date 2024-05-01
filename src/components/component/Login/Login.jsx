@@ -1,7 +1,9 @@
 import axios from "axios";
 import "./Login.scss";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setIsUserLoggedIn }) {
+  const navigate = useNavigate();
   let baseURL = "http://localhost:8081/login";
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -9,11 +11,15 @@ function Login() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
+
     try {
       const response = await axios.post(baseURL, reqbody);
+      localStorage.setItem("token", response.data.token);
+      setIsUserLoggedIn(true);
       console.log(response.data);
+      navigate("/");
     } catch (error) {
-      console.log("Something went wrong");
+      console.log(error);
     }
   };
   return (
