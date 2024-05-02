@@ -37,8 +37,8 @@
     &__icon {
       height: 0.9rem;
       align-self: center;
-      margin-left: 0.15rem;
-      background-color: aliceblue;
+      margin-left: 0.4rem;
+      filter: invert(63%) sepia(91%) saturate(459%) hue-rotate(172deg) brightness(100%) contrast(87%);
       &:hover {
         cursor: pointer;
       }

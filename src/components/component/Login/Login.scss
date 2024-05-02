@@ -1,12 +1,20 @@
 .card {
-  margin-right: 2rem;
+  // margin-right: 2rem;
+  > * {
+    margin: 10px 0;
+  } 
+
   &__form {
     display: flex;
     flex-direction: column;
+ 
   }
   &__wrapper {
     display: flex;
     flex-direction: column;
+    > * {
+      margin: 10px 0;
+    } 
   }
   &__label {
     font-size: x-large;
@@ -19,6 +27,7 @@
     margin-top: 2rem;
     height: 2rem;
     border-radius: 5px;
+    background-color: burlywood;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.253);

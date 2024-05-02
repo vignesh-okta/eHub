@@ -1,5 +1,5 @@
 import Login from "../../../components/component/Login/Login";
-import image from "../../../assets/images/andres.jpg";
+import image from "../../../assets/images/bg1.jpg";
 import "./LoginPage.scss";
 function LoginPage({ setIsUserLoggedIn }) {
   return (
@@ -7,9 +7,9 @@ function LoginPage({ setIsUserLoggedIn }) {
       <div className="login__form">
         <Login setIsUserLoggedIn={setIsUserLoggedIn} />
       </div>
-      <div className="login__image">
-        <img src={image} alt="image" className="login__img"></img>
-      </div>
+      {/* <div className="login__image"> */}
+        {/* <img src={image} alt="image" className="login__img"></img> */}
+      {/* </div> */}
     </div>
   );
 }
