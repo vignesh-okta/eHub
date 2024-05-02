@@ -54,6 +54,7 @@ function App() {
               element={<LoginPage setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
           </>
+
         </Routes>
         {/* <Footer /> */}
       </BrowserRouter>

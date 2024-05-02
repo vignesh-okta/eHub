@@ -14,7 +14,8 @@ function AdduserPage() {
   const [formData, setFormData] = useState({
     city: "",
     country: "",
-    salt: "hello",
+    status: "Active",
+    role: "user"
   });
 
   const handleChange = (event) => {
@@ -32,7 +33,7 @@ function AdduserPage() {
     try {
       const response = await axios.post(apiURL, formData);
       console.log(response.data.id);
-      navigate(`/user/:${response.data.id}`, {
+      navigate(`/user/${response.data.id}`, {
         state: { isEdit: false, formData: response.data },
       });
     } catch (error) {
@@ -41,7 +42,7 @@ function AdduserPage() {
   };
 
   return (
-    <div className="user-add">
+    <div className="form">
       <div className="user-add__wrapper">
         <div className="user-add__header">
           <Link className="user-add__link" to="/">
@@ -50,8 +51,8 @@ function AdduserPage() {
               src={arrowBack}
               alt="Return previous page"
             />
+            <h3 className="user-add__title">Add New user</h3>
           </Link>
-          <h1 className="user-add__title">Add New user</h1>
         </div>
         <form className="user-add__form" onSubmit={handleSubmit}>
           <div className="user-add__form-container">
@@ -110,7 +111,7 @@ function AdduserPage() {
                 required
               />
               <label className="user-add__label">Role</label>
-              <input
+              <select
                 type="text"
                 placeholder="role"
                 className={`user-add__form-detail`}
@@ -118,7 +119,11 @@ function AdduserPage() {
                 onChange={handleChange}
                 name="role"
                 required
-              />
+                >
+                <option value="user">User</option>
+                <option value="read_only_admin">Read Only Admin</option>
+                <option value="super_admin">Super Admin</option>
+                </select>
               <label className="user-add__label">Password</label>
               <input
                 type="password"
@@ -144,7 +149,7 @@ function AdduserPage() {
 
               <label className="user-add__label">Email</label>
               <input
-                type="text"
+                type="email"
                 placeholder="email"
                 className={`user-add__form-detail`}
                 value={formData.email}
@@ -185,22 +190,25 @@ function AdduserPage() {
                 required
               />
               <label className="user-add__label">Status</label>
-              <input
+              <select
                 type="text"
                 placeholder="status"
                 className={`user-add__form-detail`}
+                defaultValue={`Active`}
                 value={formData.status}
                 onChange={handleChange}
                 name="status"
                 required
-              />
+                >
+                <option value="Active">Active</option>
+                <option value="Suspended">Suspended</option>
+                <option value="Deactivated">Deactivated</option>
+                </select>
             </div>
           </div>
           <div className="user-add__button-wrapper">
-            <div className="user-add__button">
               <CancelButton to="/" />
               <AddButton />
-            </div>
           </div>
         </form>
       </div>

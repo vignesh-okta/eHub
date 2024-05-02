@@ -6,11 +6,11 @@ function OktaForm({ handleGenerate }) {
       <form onSubmit={handleGenerate}>
         <div className="field-wrap">
           <label className="form__label">
-            OKTA URL<span className="req">*</span>
+            OKTA URL<span className="req">:</span>
             <input
               required
               autoComplete="off"
-              className="form__input"
+              className="user-add__form-detail"
               name="oktaURL"
             />
           </label>
@@ -18,11 +18,11 @@ function OktaForm({ handleGenerate }) {
 
         <div className="field-wrap">
           <label className="form__label">
-            API TOKEN<span className="req">*</span>
+            API TOKEN<span className="req">:</span>
             <input
               required
               autoComplete="off"
-              className="form__input"
+              className="user-add__form-detail"
               name="APIToken"
             />
           </label>
