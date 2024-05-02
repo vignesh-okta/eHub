@@ -95,7 +95,7 @@ const UserPage = ({ role, queryparam }) => {
             console.log(response.data);
             setuserList(response.data);
           } catch (error) {
-            console.log("Unauthorized");
+            console.log("Unauthorized", error);
             navigate("/login");
           }
         };
