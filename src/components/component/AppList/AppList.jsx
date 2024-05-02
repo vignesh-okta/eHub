@@ -29,12 +29,16 @@ function AppList() {
   return (
     <div className="apps">
       <h1>My Apps</h1>
-      <div class="centered">
-        <section class="cards">
+      <div className="centered">
+        <section className="cards">
           {appList.map((app) => {
             let url = app.app_link;
             return (
-              <div class="app-card" onClick={() => window.open(url, "_blank")}>
+              <div
+                key={app.id}
+                className="app-card"
+                onClick={() => window.open(url, "_blank")}
+              >
                 <div className="app-card__img-wrapper">
                   <img
                     src={app.app_img}
