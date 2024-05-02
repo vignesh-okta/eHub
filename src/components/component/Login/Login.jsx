@@ -1,6 +1,7 @@
 import axios from "axios";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 function Login({ setIsUserLoggedIn }) {
   const navigate = useNavigate();
@@ -17,7 +18,13 @@ function Login({ setIsUserLoggedIn }) {
       localStorage.setItem("token", response.data.token);
       setIsUserLoggedIn(true);
       console.log(response.data);
-      navigate("/");
+      const user = jwtDecode(response.data.token);
+      console.log(user.role);
+      if (user.role === "super_admin" || user.role === "read_only_admin") {
+        navigate("/");
+      } else if (user.role === "user") {
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.log(error);
     }
