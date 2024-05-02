@@ -22,15 +22,19 @@
   &__input {
     height: 2rem;
     border-radius: 5px;
+    padding: 12px;
   }
   &__button {
     margin-top: 2rem;
     height: 2rem;
     border-radius: 5px;
-    background-color: burlywood;
+    background-color: #a68340;
+    color: white;
+    font-weight: 600;
+    font-size: medium;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.253);
+      background-color: #d19c35;
       cursor: pointer;
     }
   }
