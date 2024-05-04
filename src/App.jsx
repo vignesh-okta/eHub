@@ -15,11 +15,14 @@ import LoginPage from "./pages/Login/LoginPage/LoginPage";
 import UserDashboard from "./pages/User/UserDashboard/UserDashboard";
 import Login from "./components/component/Login/Login";
 import { useState } from "react";
+import ApplicationsPage from "./pages/Admin/ApplicationsPage/ApplicationsPage";
+import ApplicationsDetailsPage from "./pages/Admin/ApplicationDetailsPage/ApplicationsDetailsPage";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(
     !!localStorage.getItem("authToken")
   );
+  const [appName, setAppName] = useState("");
   console.log(isUserLoggedIn);
 
   return (
@@ -37,6 +40,15 @@ function App() {
             <Route path="/import" element={<ImportPage />} />
             <Route path="/user/:id" element={<UserDetailsPage />} />
             <Route path="/user/add" element={<AddUserPage />} />
+
+            <Route
+              path="/applications"
+              element={<ApplicationsPage setAppName={setAppName} />}
+            />
+            <Route
+              path="/applicationsdetails"
+              element={<ApplicationsDetailsPage appName={appName} />}
+            />
 
             <Route path="/roles" element={<RolesPage />} />
             <Route path="/roledetails" element={<RoleDetails />} />
