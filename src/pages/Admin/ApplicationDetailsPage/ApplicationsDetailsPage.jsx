@@ -4,6 +4,7 @@ import UserPage from "../UserPage/UserPage";
 import Sidebar from "../../../components/component/Sidebar/Sidebar";
 import arrowBack from "../../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
+import "./ApplicationsDetailsPage.scss";
 import CommonTable from "../../../components/component/CommonTable/CommonTable";
 
 function ApplicationsDetailsPage({ appName }) {
@@ -131,7 +132,7 @@ function ApplicationsDetailsPage({ appName }) {
                   src={arrowBack}
                   alt="Return previous page"
                 />
-                <h3 className="user-edit__title">Back to Applications</h3>
+                <h3 className="user-edit__title">Back to Apps</h3>
               </Link>
             </div>
           </div>
@@ -140,7 +141,7 @@ function ApplicationsDetailsPage({ appName }) {
         {appAssign && (
           <div>
             {/* <Link to={"/applications"}>Go back to applications</Link> */}
-            <h1>{`Assign users for ${appName}`} </h1>
+            <h1 className="app-edit__title">{`Assign users for ${appName}`} </h1>
 
             <CommonTable tableList={appUsers} handleClick={handleAssignUsers} />
           </div>

@@ -32,7 +32,7 @@ function Header() {
         </div>
 
         <div>
-          <button className="button" onClick={handleSignOut}>
+          <button className="signout_button" onClick={handleSignOut}>
             SignOut
           </button>
         </div>

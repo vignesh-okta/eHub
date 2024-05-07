@@ -49,7 +49,7 @@ function CommonTable({ tableList, handleClick }) {
         {/* Table headers */}
         <thead>
           <tr>
-            <th>
+            <th className="table__header">
               <input
                 type="checkbox"
                 onChange={handleSelectAllRows}
@@ -68,7 +68,7 @@ function CommonTable({ tableList, handleClick }) {
           {/* Render current items */}
           {currentItems.map((item) => (
             <tr key={item.id}>
-              <td>
+              <td className="table__row"> 
                 <input
                   type="checkbox"
                   onChange={() => handleRowCheckboxChange(item.id)}
