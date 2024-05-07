@@ -8,9 +8,9 @@ function AppList() {
 
   const [appList, setAppList] = useState([]);
 
-  const handleCard = () => {
-    console.log("card clicked");
-  };
+  // const handleCard = () => {
+  //   console.log("card clicked");
+  // };
 
   useEffect(() => {
     try {
