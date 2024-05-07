@@ -1,9 +1,15 @@
 import "./Header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import siteLogo from "../../../assets/logo/download.png";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <header className="header">
       <div className="header__list">
@@ -23,6 +29,12 @@ function Header() {
           <NavLink to="/import" className="header__users-button">
             Import
           </NavLink>
+        </div>
+
+        <div>
+          <button className="button" onClick={handleSignOut}>
+            SignOut
+          </button>
         </div>
       </div>
     </header>
