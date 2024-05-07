@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserPage from "../UserPage/UserPage";
+import Sidebar from "../../../components/component/Sidebar/Sidebar";
+import arrowBack from "../../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import CommonTable from "../../../components/component/CommonTable/CommonTable";
 
@@ -69,58 +71,79 @@ function ApplicationsDetailsPage({ appName }) {
   }, []);
 
   return (
-    <div>
-      {!appAssign && (
-        <>
-          {" "}
-          <Link to="/applications">Go Back</Link>
-          <button
-            onClick={() => handleAppAsign({ appName })}
-          >{`Assign Users for ${appName}`}</button>
-          <table className="table">
-            {/* Table headers */}
-            <thead>
-              <tr>
-                <th className="table__header">Display Name</th>
-                <th className="table__header">Email</th>
-                <th className="table__header">Status</th>
-                <th className="table__header">Role</th>
+    <div className={`content`}>
+      <Sidebar />
+      <div className="tables">
+        {!appAssign && (
+          <>
+            <div className="table__ops">
+              <div className="table__addbutton">
+                {/* <Link to="/applications">Back to Applications</Link> */}
+                <button
+                  className="add-button"
+                  onClick={() => handleAppAsign({ appName })}
+                >{`Assign Users for ${appName}`}</button>
+              </div>
+            </div>
+            {appAssign && (
+            <div className="tables__role_edit">
+              <div className="user-edit__header">
+                <Link className="user-edit__link" to={`/applications`}>
+                  <img
+                    className="user-edit__icon"
+                    src={arrowBack}
+                    alt="Return previous page"
+                  />
+                  <h3 className="user-edit__title">Back to Applications</h3>
+                </Link>
+              </div>
+            </div>
+            )}
+            <table className="table">
+              {/* Table headers */}
+              <thead>
+                <tr>
+                  <th className="table__header">Display Name</th>
+                  <th className="table__header">Email</th>
+                  <th className="table__header">Status</th>
+                  <th className="table__header">Role</th>
 
-                {/* Add more headers as needed */}
-              </tr>
-            </thead>
-            <tbody>
-              {/* Render current items */}
-              {appList.map((item) => (
-                <tr key={item.id}>
-                  <td className="table__row">
-                    <div>
-                      {item.firstName} {item.lastName}
-                    </div>
-                  </td>
-                  <td className="table__row"> {item.email}</td>
-                  <td className="table__row">
-                    {" "}
-                    <p className={`table__${item.status}`}>{item.status}</p>
-                  </td>
-                  <td className="table__row">{item.role}</td>
-
-                  {/* Add more cells as needed */}
+                  {/* Add more headers as needed */}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
+              </thead>
+              <tbody>
+                {/* Render current items */}
+                {appList.map((item) => (
+                  <tr key={item.id}>
+                    <td className="table__row">
+                      <div>
+                        {item.firstName} {item.lastName}
+                      </div>
+                    </td>
+                    <td className="table__row"> {item.email}</td>
+                    <td className="table__row">
+                      {" "}
+                      <p className={`table__${item.status}`}>{item.status}</p>
+                    </td>
+                    <td className="table__row">{item.role}</td>
 
-      {appAssign && (
-        <div>
-          <Link to={"/applications"}>Go back to applications</Link>
-          <h1>{`Assign users for ${appName}`} </h1>
+                    {/* Add more cells as needed */}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
 
-          <CommonTable tableList={appUsers} handleClick={handleAssignUsers} />
-        </div>
-      )}
+        {appAssign && (
+          <div>
+            {/* <Link to={"/applications"}>Go back to applications</Link> */}
+            <h1>{`Assign users for ${appName}`} </h1>
+
+            <CommonTable tableList={appUsers} handleClick={handleAssignUsers} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
