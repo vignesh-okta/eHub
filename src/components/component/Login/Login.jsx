@@ -1,9 +1,20 @@
 import axios from "axios";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 function Login({ setIsUserLoggedIn }) {
+  const responseMessage = (response) => {
+    localStorage.setItem("token", response.credential);
+    setIsUserLoggedIn(true);
+    navigate("/dashboard");
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
   const navigate = useNavigate();
   let baseURL = "http://localhost:8081/login";
   const handleLogin = async (e) => {
@@ -59,6 +70,17 @@ function Login({ setIsUserLoggedIn }) {
           Submit
         </button>
       </form>
+      <GoogleOAuthProvider clientId="740058383309-0527pnk7vlk5cl5ajt1lnd2abd311an0.apps.googleusercontent.com">
+      <div>
+        <div style={{'text-align-last': 'center'}}>
+        <h3>OR</h3>
+        </div>
+        
+        <br />
+        <br />
+        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+      </div>
+      </GoogleOAuthProvider>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 @use "../../../styles/partials/typography" as *;
 
 .search {
-  height: 11rem;
+
   width: 100%;
   padding: 0 1.5rem;
   // display: flex;
@@ -17,12 +17,14 @@
     height: 4.75rem;
     border-bottom: none;
     margin-bottom: 0;
-    padding: 1.5rem;
+    padding: 0.5rem;
   }
 
   @include desktop {
+    height: 11rem;
     padding: 0 2rem;
     height: 5.5rem;
+    // display: flex;
   }
 
   // &__header-container {
@@ -65,6 +67,7 @@
   &__input-container {
     @include tablet {
       align-self: flex-end;
+      display: flex;
     }
   }
 
@@ -90,13 +93,14 @@
       width: 100%;
       background-position: 90% center;
       font-size: 0.875rem;
-      padding-right: 2.75rem;
+      margin-right: 2.5rem;
       height: 38.5px;
     }
 
     @include desktop {
       width: 17rem;
       background-position: 95% center;
+      margin-left: auto;
     }
   }
   // &__link {

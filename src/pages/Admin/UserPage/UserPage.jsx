@@ -7,6 +7,7 @@ import deleteIcon from "../../../assets/icons/delete_outline-24px.svg";
 import sortIcon from "../../../assets/icons/sort-24px.svg";
 import editIcon from "../../../assets/icons/edit-24px.svg";
 import chevronRight from "../../../assets/icons/chevron_right-24px.svg";
+import arrowBack from "../../../assets/icons/arrow_back-24px.svg";
 import Sidebar from "../../../components/component/Sidebar/Sidebar";
 import DeleteModal from "../../../components/component/DeleteModal/DeleteModal";
 import AddButton from "../../../components/component/AddButton/AddButton";
@@ -151,23 +152,36 @@ const UserPage = ({ role, queryparam }) => {
   return (
     <>
       <div className={`content ${modalShow ? `content--show` : ``}`}>
-        {!role && <Sidebar />}
+        {<Sidebar />}
         <div className="tables">
           {!role && (
             <>
+              <div className="table__ops">
+              <div className="table__addbutton">
+              <Link to={`/user/add`}>
+                <button className="add-button">Add User</button>
+                {/* <AddButton /> */}
+              </Link>
+              </div>
               <SearchHeader
                 placeholder="Search ..."
                 searchQuery={searchQuery}
                 onSearchChange={handleSearchChange}
               />
-
-              <Link to={`/user/add`}>
-                <AddButton />
-              </Link>
+              </div>
             </>
           )}
-          {role && <Link to={`/roles`}>Go Back</Link>}
-
+          {/* {role && <Link to={`/roles`}>Go Back</Link>} */}
+          {role && <div className="tables__role_edit"><div className="user-edit__header">
+        <Link className="user-edit__link" to={`/roles`}>
+          <img
+            className="user-edit__icon"
+            src={arrowBack}
+            alt="Return previous page"
+          />
+          <h3 className="user-edit__title">Back to Roles</h3>
+        </Link>
+        </div></div>}
           <table className="table">
             {/* Table headers */}
             <thead>

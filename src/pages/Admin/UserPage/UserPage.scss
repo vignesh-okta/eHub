@@ -18,6 +18,11 @@ $cell-background: #444;
   // border-radius: 20px;
   // box-shadow: 0 0 10px rgba(196, 196, 196, 0.1);
   overflow-x: auto;
+
+  &__role_edit {
+    margin: auto;
+    padding: 0 5%;
+  }
 }
 // Style the table
 .table {
@@ -30,6 +35,14 @@ $cell-background: #444;
   margin: auto;
   overflow: auto;
 
+  &__ops{
+    display: flex;
+  }
+
+  &__addbutton{
+    margin-left: 2%;
+    width: 100%;
+  }
   // Style the header row
   &__header {
     background-color: $main;
@@ -42,7 +55,7 @@ $cell-background: #444;
   }
 
   &__row {
-    padding: 0.4rem;
+    padding: 0 0 0.4rem 1rem;
     font-size: medium;
     // padding: 8px;
     color: white;
@@ -103,6 +116,8 @@ $cell-background: #444;
     padding: 0.3rem;
     text-align: center;
   }
+
+
 
   // Style table rows
   //   tbody {
@@ -182,3 +197,18 @@ th:last-child {
     filter: blur(2px);
   }
 }
+
+.add-button {
+  @include button;
+  color: $primary-white;
+  border-style: none;
+  background-color: $blue-text;
+  margin-left: 5%;
+  margin-bottom: 2rem;
+  width: auto;
+  &:hover {
+    background-color: $background-graphite;
+    cursor: pointer;
+  }
+}
+

@@ -28,26 +28,25 @@ function AppList() {
   }, []);
   return (
     <div className="apps">
-      <h1>My Apps</h1>
+      <h2 className="apps__title">My Apps</h2>
       <div className="centered">
         <section className="cards">
           {appList.map((app) => {
             let url = app.app_link;
             return (
-              <div
+              <><div
                 key={app.id}
                 className="app-card"
                 onClick={() => window.open(url, "_blank")}
               >
-                <div className="app-card__img-wrapper">
-                  <img
-                    src={app.app_img}
-                    className="app-card__img"
-                    alt="icons"
-                  />
-                </div>
-                <p>{app.app_name}</p>
+                <div className={`app-card__${app.app_name}`}>
+                {/* <img
+                  src={app.app_img}
+                  className="app-card__img"
+                  alt="icons" /> */}
+              </div><p className="app-card__text">{app.app_name}</p>
               </div>
+              </>
             );
           })}
         </section>

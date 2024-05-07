@@ -1,5 +1,6 @@
 import "./Sidebar.scss";
 import { NavLink } from "react-router-dom";
+import AddButton from "../AddButton/AddButton";
 
 function Sidebar() {
   return (

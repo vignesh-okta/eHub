@@ -1,5 +1,5 @@
 .form {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     padding: 15px;
     align-items: flex-end;
@@ -7,7 +7,7 @@
     &__fields {
       margin: 0;
       display: flex;
-      padding: 2rem;
+      padding: 2rem 2rem 0;
       gap: 2rem;
     }
     max-width: 100%;

@@ -8,22 +8,20 @@ import AppList from "../AppList/AppList";
 
 function SidebarMenu({ name }) {
   return (
-    <section>
+    <section className="sidebar__main">
       <div className="wrap">
         <div className="d-flex justify-content-between flex-column sidebar">
           <div>
-            <a className=" d-non d-sm-block text-decoration-none  sidebar__text d-flex align-itemcenter">
-              <span className="ms-1 fs-5">EHub User Dashboard</span>
-            </a>
-            <ul className="nav nav-pills flex-column sidebar__ul">
+
+            <ul className="sidebar__ul">
               <li className="nav-item text-white fs-4 sidebar--active">
                 <Link
                   to="/dashboard"
-                  className="nav-link text-white fs-5"
+                  className="sidebar__link"
                   aria-current="page"
                 >
                   <i className="bi bi-window-stack  sidebar__icon"></i>
-                  <span className="ms-2 d-non d-sm-inline sidebar__text ">
+                  <span className="sidebar__text ">
                     Dashboard
                   </span>
                 </Link>
@@ -31,11 +29,11 @@ function SidebarMenu({ name }) {
               <li className="nav-item text-white fs-4 ">
                 <Link
                   to="#"
-                  className="nav-link text-white fs-5"
+                  className="sidebar__link"
                   aria-current="page"
                 >
                   <i className="bi bi-person-heart  sidebar__icon"></i>
-                  <span className="ms-2  d-non d-sm-inline sidebar__text">
+                  <span className="sidebar__text">
                     Edit
                   </span>
                 </Link>
@@ -43,18 +41,18 @@ function SidebarMenu({ name }) {
               <li className="nav-item text-white fs-4">
                 <Link
                   to="#"
-                  className="nav-link text-white fs-5"
+                  className="sidebar__link"
                   aria-current="page"
                 >
                   <i className="bi bi-gear sidebar__icon "></i>
-                  <span className="ms-2  d-non d-sm-inline sidebar__text">
+                  <span className="sidebar__text">
                     Settings
                   </span>
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="dropdown open">
+          <div className="sidebar__user">
             <a
               className="text-decoration-none text-white p-3 dropdown-toggle"
               type="button"
@@ -62,7 +60,7 @@ function SidebarMenu({ name }) {
               aria-expanded="false"
             >
               <i className="bi bi-person-circle"></i>
-              <span className="ms-2 sidebar__text">{name}</span>
+              <span className="sidebar__name">{name}</span>
             </a>
           </div>
         </div>
