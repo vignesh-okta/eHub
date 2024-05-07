@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-function CommonTable({ tableList }) {
+function CommonTable({ tableList, handleClick }) {
+  // for Bulk select
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [isAllRowsSelected, setIsAllRowsSelected] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   // Calculate the index of the first and last item to display on the current page
@@ -15,14 +19,43 @@ function CommonTable({ tableList }) {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  // Handler for toggling all rows selection
+  // Handler for toggling all rows selection
+  const handleSelectAllRows = () => {
+    const allRowIds = currentItems.map((row) => row.id);
+    setSelectedRows(isAllRowsSelected ? [] : allRowIds);
+    setIsAllRowsSelected(!isAllRowsSelected);
+  };
+
+  // Handler for toggling individual row selection
+  const handleRowCheckboxChange = (id) => {
+    let updatedSelectedRows = [...selectedRows];
+    if (updatedSelectedRows.includes(id)) {
+      updatedSelectedRows = updatedSelectedRows.filter((rowId) => rowId !== id);
+    } else {
+      updatedSelectedRows.push(id);
+    }
+    setSelectedRows(updatedSelectedRows);
+    setIsAllRowsSelected(updatedSelectedRows.length === currentItems.length);
+  };
 
   return (
     <div>
       {" "}
+      <button className="button" onClick={() => handleClick(selectedRows)}>
+        Assign{" "}
+      </button>
       <table className="table">
         {/* Table headers */}
         <thead>
           <tr>
+            <th>
+              <input
+                type="checkbox"
+                onChange={handleSelectAllRows}
+                checked={isAllRowsSelected}
+              ></input>
+            </th>
             <th className="table__header">Display Name</th>
             <th className="table__header">Email</th>
             <th className="table__header">Status</th>
@@ -35,6 +68,13 @@ function CommonTable({ tableList }) {
           {/* Render current items */}
           {currentItems.map((item) => (
             <tr key={item.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={() => handleRowCheckboxChange(item.id)}
+                  checked={selectedRows.includes(item.id)}
+                ></input>
+              </td>
               <td className="table__row">
                 <div>
                   {item.firstName} {item.lastName}

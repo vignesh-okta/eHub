@@ -27,6 +27,31 @@ function ApplicationsDetailsPage({ appName }) {
     }
   };
 
+  // Assign users for the given app name
+  const handleAssignUsers = async (selectedRows) => {
+    console.log("handle Clicked", selectedRows, appName);
+    if (selectedRows.length) {
+      const reqBody = {
+        selectedRows: selectedRows,
+        appName: appName,
+      };
+      try {
+        const postAppUsers = async () => {
+          const response = await axios.post(baseURL, reqBody, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response.data);
+          navigate("/applications");
+        };
+        postAppUsers();
+      } catch (error) {
+        console.log("Something went wrong", error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (!appName) {
       navigate("/applications");
@@ -92,7 +117,8 @@ function ApplicationsDetailsPage({ appName }) {
         <div>
           <Link to={"/applications"}>Go back to applications</Link>
           <h1>{`Assign users for ${appName}`} </h1>
-          <CommonTable tableList={appUsers} />
+
+          <CommonTable tableList={appUsers} handleClick={handleAssignUsers} />
         </div>
       )}
     </div>
