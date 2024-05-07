@@ -85,54 +85,56 @@ function ApplicationsDetailsPage({ appName }) {
                 >{`Assign Users for ${appName}`}</button>
               </div>
             </div>
-            {appAssign && (
-            <div className="tables__role_edit">
-              <div className="user-edit__header">
-                <Link className="user-edit__link" to={`/applications`}>
-                  <img
-                    className="user-edit__icon"
-                    src={arrowBack}
-                    alt="Return previous page"
-                  />
-                  <h3 className="user-edit__title">Back to Applications</h3>
-                </Link>
-              </div>
-            </div>
-            )}
             <table className="table">
-              {/* Table headers */}
-              <thead>
-                <tr>
-                  <th className="table__header">Display Name</th>
-                  <th className="table__header">Email</th>
-                  <th className="table__header">Status</th>
-                  <th className="table__header">Role</th>
+          {/* Table headers */}
+          <thead>
+            <tr>
+              <th className="table__header">Display Name</th>
+              <th className="table__header">Email</th>
+              <th className="table__header">Status</th>
+              <th className="table__header">Role</th>
 
-                  {/* Add more headers as needed */}
-                </tr>
-              </thead>
-              <tbody>
-                {/* Render current items */}
-                {appList.map((item) => (
-                  <tr key={item.id}>
-                    <td className="table__row">
-                      <div>
-                        {item.firstName} {item.lastName}
-                      </div>
-                    </td>
-                    <td className="table__row"> {item.email}</td>
-                    <td className="table__row">
-                      {" "}
-                      <p className={`table__${item.status}`}>{item.status}</p>
-                    </td>
-                    <td className="table__row">{item.role}</td>
+              {/* Add more headers as needed */}
+            </tr>
+          </thead>
+          <tbody>
+            {/* Render current items */}
+            {appList.map((item) => (
+              <tr key={item.id}>
+                <td className="table__row">
+                  <div>
+                    {item.firstName} {item.lastName}
+                  </div>
+                </td>
+                <td className="table__row"> {item.email}</td>
+                <td className="table__row">
+                  {" "}
+                  <p className={`table__${item.status}`}>{item.status}</p>
+                </td>
+                <td className="table__row">{item.role}</td>
 
-                    {/* Add more cells as needed */}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                {/* Add more cells as needed */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
           </>
+        )}
+        
+
+        {appAssign && (
+          <div className="tables__role_edit">
+            <div className="user-edit__header">
+              <Link className="user-edit__link" to={`/applications`}>
+                <img
+                  className="user-edit__icon"
+                  src={arrowBack}
+                  alt="Return previous page"
+                />
+                <h3 className="user-edit__title">Back to Applications</h3>
+              </Link>
+            </div>
+          </div>
         )}
 
         {appAssign && (

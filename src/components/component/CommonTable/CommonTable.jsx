@@ -42,7 +42,7 @@ function CommonTable({ tableList, handleClick }) {
   return (
     <div>
       {" "}
-      <button className="button" onClick={() => handleClick(selectedRows)}>
+      <button className="add-button" onClick={() => handleClick(selectedRows)}>
         Assign{" "}
       </button>
       <table className="table">
